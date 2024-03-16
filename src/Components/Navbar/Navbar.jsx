@@ -70,7 +70,7 @@ const Navbar = () => {
 </>
 const [menu, setMenu] = useState(false)
     return (
-        <nav className=" flex justify-between items-center p-5 bg-slate-50 shadow-xl relative  lg:fixed lg:w-[1280px]">
+        <nav className=" z-50 flex justify-between items-center p-5 bg-slate-50 shadow-xl relative  lg:fixed lg:w-[1280px]">
         <div className=" flex items-center">
             <img className=" w-24 " src={Logo} alt="Logo" />
             <h2 className=" hidden md:block text-2xl font-semibold text-sky-400">Employ<span className=" text-blue-900">Edge</span></h2>
