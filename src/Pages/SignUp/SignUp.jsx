@@ -2,8 +2,12 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Socal from "../../Shyerd/Socal/Socal"
 import Logo from "../../assets/logo (2).png"
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/Provider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const { RegisterUser } = useContext(AuthContext)
     const {
         register,
         reset,
@@ -12,6 +16,29 @@ const SignUp = () => {
     } = useForm()
     const datas = (data) => {
         console.log(data)
+        RegisterUser(data?.email, data?.password)
+            .then(res => {
+                if (res) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You Account Successfully Register!",
+                        icon: "success"
+                    });
+                    
+                }
+            })
+            .catch(err => {
+                if(err){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                      });
+                }
+            })
+
+
     }
     return (
         <div className=" flex justify-between items-center gap-5 ">
