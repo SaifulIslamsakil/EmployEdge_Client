@@ -8,7 +8,7 @@ const Welcome = () => {
                 <h1 className=" text-5xl font-semibold text-blue-800  w-11/12">We Are Increasing Business Success With Technology</h1>
                 <p>An IT solution service company may serve clients from various industries such as healthcare, finance, education, and manufacturing. They may work on a project basis, providing services for a specific project or on a long-term basis...Amazing communication.Best trending designing experienceEmail & Live chat.
                 </p>
-                <button className=" bg-blue-500 text-white py-3 px-5 rounded-full">Discover More</button>
+                <button className=" bg-blue-700 hover:bg-sky-600 text-white py-4 px-9 rounded-full">Discover More</button>
             </div>
             <div className=" flex-1 relative">
                 <img className=" md:w-3/4 mx-auto " src="https://i.ibb.co/4ZnSJPy/group28.png" alt="" />
