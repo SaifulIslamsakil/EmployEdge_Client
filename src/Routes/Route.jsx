@@ -33,7 +33,7 @@ const Routes = createBrowserRouter([
         children:[
             {
                 path:"/Dashbords",
-                element:<Dashbords></Dashbords>
+                element:<Private><Dashbords></Dashbords></Private>
             }
         ]
     }

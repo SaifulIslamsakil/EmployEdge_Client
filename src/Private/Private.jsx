@@ -10,7 +10,9 @@ const Private = ({ children }) => {
         return children
     }
     if (lodding) {
-        return <Skeletons></Skeletons>
+        return <div>
+            dsdd
+        </div>
     }
 
     return <Navigate to="/Register"></Navigate>
