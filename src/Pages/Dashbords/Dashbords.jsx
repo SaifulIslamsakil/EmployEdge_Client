@@ -1,6 +1,6 @@
 const Dashbords = () => {
     return (
-        <div className=" h-screen bg-slate-200 w-full">
+        <div className=" h-screen  w-full">
            sdfasdfsdsd 
         </div>
     );

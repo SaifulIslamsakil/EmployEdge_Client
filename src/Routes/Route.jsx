@@ -5,7 +5,12 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Private from "../Private/Private";
 import Dashbords from "../Pages/Dashbords/Dashbords";
 import DashbordLayout from "../Layout/DashbordLayout/DashbordLayout";
-import Login from "../Pages/Login/Login";
+import Login from "../Pages/Login/Login"
+import Employeelist from "../Pages/employeelist/employeelist";
+import Progress from "../Pages/progress/Progress";
+import PaymentHistory from "../Pages/payment-history/PaymentHistory";
+import WorkSheet from "../Pages/work-sheet/WorkSheet";
+import AllEmployeeList from "../Pages/all-employee-list/AllEmployeeList";
 
 const Routes = createBrowserRouter([
     {
@@ -34,7 +39,31 @@ const Routes = createBrowserRouter([
             {
                 path:"/Dashbords",
                 element:<Private><Dashbords></Dashbords></Private>
-            }
+            },
+            {
+                path:"/Dashbords/employee-list",
+                element:<Private><Employeelist></Employeelist></Private>
+            },
+            {
+                path:"/Dashbords/progress",
+                element:<Private><Progress></Progress></Private>
+            },
+            {
+                path:"/Dashbords/payment-history",
+                element:<Private><PaymentHistory></PaymentHistory></Private>
+            },
+            {
+                path:"/Dashbords/work-sheet",
+                element:<Private><WorkSheet></WorkSheet></Private>
+            },
+            {
+                path:"/Dashbords/work-sheet",
+                element:<Private><WorkSheet></WorkSheet></Private>
+            },
+            {
+                path:"/Dashbords/all-employee-list",
+                element:<Private><AllEmployeeList></AllEmployeeList></Private>
+            },
         ]
     }
 ])
