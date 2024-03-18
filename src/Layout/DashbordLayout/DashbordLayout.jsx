@@ -85,7 +85,7 @@ const DashbordLayout = () => {
                     <img className=" w-20 " src={Logo} alt="Logo" />
                     <h2 className={`${dasSidebarToggel ? "md:block":"hidden"}  text-2xl font-semibold text-sky-400`}>Employ<span className=" text-blue-900">Edge</span></h2>
                 </div>
-                <ul className=" py-10 px-7 text-xl space-y-9">
+                <ul className={` py-10 px-7 ${dasSidebarToggel? "text-xl":"text-2xl"} space-y-9`}>
                     {DashMenu}
                 </ul>
             </div>
