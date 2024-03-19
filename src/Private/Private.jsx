@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Provider";
 import { Navigate } from "react-router-dom";
-import Skeletons from "../Components/Skeletons/Skeletons";
+import { Spinner } from "keep-react";
 
 const Private = ({ children }) => {
     
@@ -10,9 +10,7 @@ const Private = ({ children }) => {
         return children
     }
     if (lodding) {
-        return <div>
-            dsdd
-        </div>
+        return  <Spinner color="info" size="lg" />
     }
 
     return <Navigate to="/Register"></Navigate>
