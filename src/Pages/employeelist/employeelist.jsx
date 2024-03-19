@@ -1,7 +1,28 @@
 import { Avatar, Badge, Button, Table } from "keep-react";
 import { ArrowsDownUp, Cube, DotsThreeOutline } from "phosphor-react";
+import { MdVerified } from "react-icons/md";
+import { GoUnverified } from "react-icons/go";
+import useAxiosPulic from "../../Hooks/useAxiosPulic/useAxiosPulic";
+import { useQuery } from "@tanstack/react-query";
 
 const employeelist = () => {
+    const AxiosPublic = useAxiosPulic()
+    const { data: EmployeeList = [] } = useQuery({
+        queryKey: ['all-class'],
+        queryFn: async () => {
+            const res = await AxiosPublic.get("/EmployeeList")
+            return res.data
+        }
+    })
+
+    const Verified = (id)=>{
+        AxiosPublic.put(`verified/${id}`)
+        .then(res=>{
+            if(res?.data.modifiedCount ==1){
+                alert("ss")
+            }
+        })
+    }
     return (
         <div className=" p-5 space-y-5 ">
             <h1 className=" text-2xl font-semibold text-blue-800">Employeelist</h1>
@@ -50,42 +71,47 @@ const employeelist = () => {
                         <Table.HeadCell />
                     </Table.Head>
                     <Table.Body className="divide-gray-25 divide-y">
-                        <Table.Row className="bg-white">
-                            <Table.Cell>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex items-center gap-2">
-                                            <Avatar img="/images/company/paypal.png" />
-                                            <div>
-                                                <p className="-mb-0.5 text-body-4 font-medium text-metal-600">Paypal</p>
-                                                <span className="text-body-5 font-normal text-metal-500">Withdraw</span>
+                        {
+                            EmployeeList.map(Employee => <Table.Row key={Employee?._id} className="bg-white">
+                                <Table.Cell>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex items-center gap-2">
+                                                <Avatar img={Employee.Photo} />
+                                                <div>
+                                                    <p className="-mb-0.5 text-body-4 font-medium text-metal-600">{Employee?.name}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <p className="text-body-5 font-medium text-metal-500">Jan 19, 2022</p>
-                                <p className="text-body-5 font-normal text-metal-500">3:45 pm</p>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <p className="text-body-5 font-medium text-metal-500">$652.00</p>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <div className="inline-block">
-                                    <Badge color="success">Delivered</Badge>
-                                </div>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <p className="text-body-5 font-medium text-metal-500">Jan 19, 2022</p>
-                                <p className="text-body-5 font-normal text-metal-500">3:45 pm</p>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <Button variant="outline" size="sm" shape="circle">
-                                    <DotsThreeOutline size={15} />
-                                </Button>
-                            </Table.Cell>
-                        </Table.Row>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <p className="text-body-5 font-medium text-metal-500">{Employee?.email}</p>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <p className="text-body-5 font-medium text-metal-500">{Employee?.selary}</p>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className="inline-block">
+                                        {
+                                            Employee?.Verified ? <span  className=" text-2xl text-green-500"><MdVerified /></span>
+                                            :<span onClick={()=>Verified(Employee?._id)} className=" text-2xl text-red-500"><GoUnverified /></span>
+                                        }
+                                    </div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <p className="text-body-5 font-medium text-metal-500">{Employee?.bank_account_no}</p>
+                                </Table.Cell>
+                                <Table.Cell className=" flex gap-2 items-center">
+                                    <Button color="primary" variant="outline">
+                                        Pay
+                                    </Button>
+                                    <Button color="secondary" variant="outline">
+                                        Details
+                                    </Button>
+                                </Table.Cell>
+                            </Table.Row>)
+                        }
                     </Table.Body>
                 </Table>
             </div>

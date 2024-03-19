@@ -79,7 +79,7 @@ const DashbordLayout = () => {
         </li>
     </>
     return (
-        <div className=" bg-slate-100 h-screen w-full flex">
+        <div className=" bg-slate-100  w-full flex">
             <div className={`bg-white shadow-lg ${dasSidebarToggel ? "w-80":"w-28" } h-screen py-5 border`} >
                 <div className=" flex items-center">
                     <img className=" w-20 " src={Logo} alt="Logo" />

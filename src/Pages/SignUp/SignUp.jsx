@@ -118,7 +118,7 @@ const SignUp = () => {
                             <label>
                                 <p className="font-semibold">Role</p>
                             </label>
-                            <select {...register("role")} className="border border-blue-500 p-2">
+                            <select {...register("role")} className="border border-blue-500 p-2" required>
                                 <option disabled selected>Select one</option>
                                 <option value="Admin">Admin</option>
                                 <option value="HR">HR</option>
