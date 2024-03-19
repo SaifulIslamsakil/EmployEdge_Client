@@ -11,6 +11,7 @@ import Progress from "../Pages/progress/Progress";
 import PaymentHistory from "../Pages/payment-history/PaymentHistory";
 import WorkSheet from "../Pages/work-sheet/WorkSheet";
 import AllEmployeeList from "../Pages/all-employee-list/AllEmployeeList";
+import EmployeeDetails from "../Pages/EmployeeDetails/EmployeeDetails";
 
 const Routes = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const Routes = createBrowserRouter([
             {
                 path:"/Dashbords/all-employee-list",
                 element:<Private><AllEmployeeList></AllEmployeeList></Private>
+            },
+            {
+                path:"/Dashbords/employeeDetails",
+                element:<Private><EmployeeDetails></EmployeeDetails></Private>
             },
         ]
     }

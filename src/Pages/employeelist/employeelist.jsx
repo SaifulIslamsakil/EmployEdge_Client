@@ -4,10 +4,14 @@ import { MdVerified } from "react-icons/md";
 import { GoUnverified } from "react-icons/go";
 import useAxiosPulic from "../../Hooks/useAxiosPulic/useAxiosPulic";
 import { useQuery } from "@tanstack/react-query";
+import PayModal from "../../Shyerd/PayModal/PayModal";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const employeelist = () => {
     const AxiosPublic = useAxiosPulic()
-    const { data: EmployeeList = [] } = useQuery({
+    const [openModal, setOpenModal] = useState(false)
+    const { data: EmployeeList = [], refetch } = useQuery({
         queryKey: ['all-class'],
         queryFn: async () => {
             const res = await AxiosPublic.get("/EmployeeList")
@@ -15,16 +19,17 @@ const employeelist = () => {
         }
     })
 
-    const Verified = (id)=>{
+    const Verified = (id) => {
         AxiosPublic.put(`verified/${id}`)
-        .then(res=>{
-            if(res?.data.modifiedCount ==1){
-                alert("ss")
-            }
-        })
+            .then(res => {
+                if (res?.data.modifiedCount == 1) {
+                    alert("ss")
+                    refetch()
+                }
+            })
     }
     return (
-        <div className=" p-5 space-y-5 ">
+        <div className=" p-5 space-y-5 relative ">
             <h1 className=" text-2xl font-semibold text-blue-800">Employeelist</h1>
             <div className=" overflow-hidden">
                 <Table className="w-full" showCheckbox={true}>
@@ -94,8 +99,8 @@ const employeelist = () => {
                                 <Table.Cell>
                                     <div className="inline-block">
                                         {
-                                            Employee?.Verified ? <span  className=" text-2xl text-green-500"><MdVerified /></span>
-                                            :<span onClick={()=>Verified(Employee?._id)} className=" text-2xl text-red-500"><GoUnverified /></span>
+                                            Employee?.Verified ? <span className=" text-2xl text-green-500"><MdVerified /></span>
+                                                : <span onClick={() => Verified(Employee?._id)} className=" text-2xl text-red-500"><GoUnverified /></span>
                                         }
                                     </div>
                                 </Table.Cell>
@@ -103,18 +108,26 @@ const employeelist = () => {
                                     <p className="text-body-5 font-medium text-metal-500">{Employee?.bank_account_no}</p>
                                 </Table.Cell>
                                 <Table.Cell className=" flex gap-2 items-center">
-                                    <Button color="primary" variant="outline">
+                                    <Button onClick={() => setOpenModal(true)} disabled={!Employee?.Verified} color="primary" variant="outline">
                                         Pay
                                     </Button>
-                                    <Button color="secondary" variant="outline">
-                                        Details
-                                    </Button>
+                                    <Link to="/Dashbords/employeeDetails">
+                                        <Button color="secondary" variant="outline">
+                                            Details
+                                        </Button>
+                                    </Link>
                                 </Table.Cell>
+
                             </Table.Row>)
+
                         }
                     </Table.Body>
                 </Table>
             </div>
+            <PayModal
+                setOpenModal={setOpenModal}
+                openModal={openModal}
+            ></PayModal>
         </div>
     );
 };
