@@ -2,12 +2,13 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/Provider";
 import Logo from "../../assets/logo (2).png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Socal from "../../Shyerd/Socal/Socal";
 import Swal from "sweetalert2";
 
 const Login = () => {
     const { LoginUser } = useContext(AuthContext)
+    const Navigate = useNavigate()
     const {
         register,
         reset,
@@ -26,6 +27,7 @@ const Login = () => {
                     icon: "success"
                 });
             }
+            Navigate("/Dashbords")
         })
         .catch(err=>{
             if(err){

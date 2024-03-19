@@ -12,12 +12,13 @@ import PaymentHistory from "../Pages/payment-history/PaymentHistory";
 import WorkSheet from "../Pages/work-sheet/WorkSheet";
 import AllEmployeeList from "../Pages/all-employee-list/AllEmployeeList";
 import EmployeeDetails from "../Pages/EmployeeDetails/EmployeeDetails";
+import ErrorPages from "../Pages/ErrorPages/ErrorPages";
 
 const Routes = createBrowserRouter([
     {
         path:"/",
         element:<MainLayout></MainLayout>,
-        errorElement:"?",
+        errorElement:<ErrorPages></ErrorPages>,
         children:[
             {
                 path:"/",

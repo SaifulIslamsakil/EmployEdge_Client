@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import PayModal from "../../Shyerd/PayModal/PayModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const employeelist = () => {
     const AxiosPublic = useAxiosPulic()
@@ -23,7 +24,11 @@ const employeelist = () => {
         AxiosPublic.put(`verified/${id}`)
             .then(res => {
                 if (res?.data.modifiedCount == 1) {
-                    alert("ss")
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Employee verified succefull!",
+                        icon: "success"
+                      });
                     refetch()
                 }
             })

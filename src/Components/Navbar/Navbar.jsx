@@ -4,8 +4,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { LuMenu } from "react-icons/lu";
 import { ImCross } from "react-icons/im";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/Provider";
 const Navbar = () => {
+    const {user} = useContext(AuthContext)
     const menuItems = <>
     <li>
         <NavLink
@@ -47,7 +49,7 @@ const Navbar = () => {
             Contact us
         </NavLink>
     </li>
-    <li>
+    <li >
         <NavLink
             to="/Dashbords"
             className={({ isActive, isPending }) =>
@@ -57,7 +59,7 @@ const Navbar = () => {
             Dashboard
         </NavLink>
     </li>
-    <li>
+    <li className={`${user&& "hidden"}`}>
         <NavLink
             to="/Register"
             className={({ isActive, isPending }) =>

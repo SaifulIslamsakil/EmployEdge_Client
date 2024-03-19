@@ -13,7 +13,7 @@ const Private = ({ children }) => {
         return  <Skeleton></Skeleton>
     }
 
-    return <Navigate to="/Register"></Navigate>
+    return <Navigate to="/login"></Navigate>
 };
 
 export default Private;
